@@ -3,11 +3,17 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Location.findAll({}).then(function(dbLocations) {
+    db.Location.findAll({
+      include: [db.Store]
+    }).then(function(dbLocations) {
+      console.log("dbLocations", dbLocations);
+
       res.render("index", {
         msg: "Welcome!",
         locations: dbLocations
+        //stores: Stores
       });
+
     });
   });
 

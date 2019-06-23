@@ -20,7 +20,18 @@
           {{#each locations}}
           <li data-id="{{this.id}}" class="list-group-item">
             <a href="example/{{this.id}}">{{this.city}}, {{this.state}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+              
+                {{#each this.Stores}}
+                <div> 
+                  <strong>{{name}}</strong><br>
+                  Description: {{description}}<br>
+                  Address Line 1: {{adrln1}}<br>
+                  Address Line 2: {{addrln2}}<br>
+                  Zip: {{zip}}
+                </div>
+                {{/each}}
+              
+           <!-- <button class="btn btn-danger float-right delete">ｘ</button> -->
           </li>
           {{/each}}
         </ul>
