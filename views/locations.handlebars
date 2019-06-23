@@ -8,7 +8,36 @@
         <ul id="example-list" class="list-group">
           {{#each locations}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.city}}, {{this.state}}</a>
+            <a href="locations/{{this.id}}">{{this.city}}, {{this.state}}</a>
+              
+                <!-- {{#each this.Stores}}
+                <div> 
+                  <strong>{{name}}</strong><br>
+                  Description: {{description}}<br>
+                  Address Line 1: {{adrln1}}<br>
+                  Address Line 2: {{addrln2}}<br>
+                  Zip: {{zip}}
+                </div>
+                {{/each}} -->
+              
+          </li>
+          {{/each}}
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+<!-- This code displays a list of all locations and all stores for each location:
+            <ul id="example-list" class="list-group">
+          {{#each locations}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="locations/{{this.id}}">{{this.city}}, {{this.state}}</a>
               
                 {{#each this.Stores}}
                 <div> 
@@ -23,11 +52,4 @@
           </li>
           {{/each}}
         </ul>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+-->

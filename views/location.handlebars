@@ -1,0 +1,29 @@
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h4><a href="/">Home</a></h4>
+        <h4><a href="/locations">All Locations</a></h4>
+        
+        <div>
+            <h1>{{location.city}}, {{location.state}}</h1>
+
+            <h3>Stores</h3>
+            {{#each location.Stores}}
+            <div> 
+                <strong>{{name}}</strong><br>
+                Description: {{description}}<br>
+                Address Line 1: {{adrln1}}<br>
+                Address Line 2: {{addrln2}}<br>
+                Zip: {{zip}}
+            </div>
+            {{/each}}
+        </div>
+    
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
