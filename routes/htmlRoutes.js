@@ -6,16 +6,37 @@ module.exports = function(app) {
     db.Location.findAll({
       include: [db.Store]
     }).then(function(dbLocations) {
-      console.log("dbLocations", dbLocations);
-
+   
       res.render("index", {
-        msg: "Welcome!",
-        locations: dbLocations
+        msg: "Welcome!"
+        //locations: dbLocations
         //stores: Stores
       });
 
     });
   });
+
+  // load locations page
+  // lists all locations
+  app.get("/locations", function(req, res) 
+  {
+    db.Location.findAll({
+      include: [db.Store]
+    }).then(function(dbLocations) 
+    {
+      console.log("dbLocations", dbLocations);
+      res.render("locations", {
+        locations: dbLocations
+      });
+
+    });
+  });
+
+
+  // load location page
+  // page for specific location 
+
+
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
