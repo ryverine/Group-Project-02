@@ -27,8 +27,26 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
-  }
+  }/*,
+  getMatchingProducts: function(name) {
+    return $.ajax({
+      url: "api/products/" + name,
+      type: "GET"
+    });
+  }*/
 };
+
+$( ".btn-find" ).click(function() {
+  var prod = $("#prodName").text();
+  //var noSpace = prod.split(' ').join('+');
+  //var noDot = noSpace.split('.').join('-');
+  console.log("Find Button: " + prod);
+
+  /*API.getMatchingProducts(prod).then(function(data) {
+    console.log("prodData", data);
+  });*/
+});
+
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {

@@ -11,11 +11,8 @@
             <h3>Stores</h3>
             {{#each location.Stores}}
             <div> 
-                <strong>{{name}}</strong><br>
-                Description: {{description}}<br>
-                Address Line 1: {{adrln1}}<br>
-                Address Line 2: {{addrln2}}<br>
-                Zip: {{zip}}
+                <strong><a href="/store/{{id}}">{{name}}</a></strong><br>
+                {{addrln1}}
             </div>
             {{/each}}
         </div>

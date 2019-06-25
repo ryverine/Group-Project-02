@@ -33,7 +33,7 @@ module.exports = function(app) {
       where: { id: req.params.id }
     }).then(function(dbLocation) 
     {
-      console.log("dbLocations.dataValues", dbLocation.dataValues);
+      // console.log("dbLocations.dataValues", dbLocation.dataValues);
       res.render("location", {
         location: dbLocation
       });
@@ -41,17 +41,54 @@ module.exports = function(app) {
   });
 
 
+  // load store page
+  // page for specific store
+  app.get("/store/:id", function(req, res) 
+  {
+    db.Store.findOne(
+    { 
+      include: [db.Product],
+      where: { id: req.params.id }
+    }).then(function(dbStore) 
+    {
+      // console.log("dbStore.dataValues", dbStore.dataValues);
+      res.render("store", {
+        store: dbStore
+      });
+    });
+  });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
 
+    // load store page
+  // page for specific store
+  app.get("/product/:id", function(req, res) 
+  {
+    db.Product.findOne(
+    { 
+      where: { id: req.params.id }
+    }).then(function(dbProduct) 
+    {
+      console.log("------------------------------");
+      //console.log("dbProduct", dbProduct);
+      //console.log("dbProduct.name", dbProduct.name);
+      //var prodName = dbProduct.name;
+      //console.log("dbProds", prods);
+      console.log("------------------------------");
+      res.render("product", {
+        product: dbProduct
+      });
+    });
+  });
+
+  /* Load example page and pass in an example by id
+  app.get("/example/:id", function(req, res) 
+  {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
       res.render("example", {
         example: dbExample
       });
     });
-
-  });
+  });*/
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {

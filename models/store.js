@@ -51,6 +51,17 @@ module.exports = function(sequelize, DataTypes)
         });
       };
 
+      Store.associate = function(models) 
+      {
+          Store.hasMany(models.Product, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+        };
+
+    
+
     return Store;
   };
   
