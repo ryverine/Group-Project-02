@@ -27,24 +27,49 @@ var API = {
       url: "api/examples/" + id,
       type: "DELETE"
     });
-  }/*,
+  },
   getMatchingProducts: function(name) {
+    console.log("getMatchingProducts("+name+")");
     return $.ajax({
       url: "api/products/" + name,
       type: "GET"
     });
-  }*/
+    //http://localhost:3000/product/api/products/94
+  }
 };
 
 $( ".btn-find" ).click(function() {
+  //event.preventDefault();
   var prod = $("#prodName").text();
+  var id =  $("#prodName").attr("data-prod");
+  //var prod = "abc";
   //var noSpace = prod.split(' ').join('+');
+  var reformatName = prod.split(' ').join('+');
   //var noDot = noSpace.split('.').join('-');
-  console.log("Find Button: " + prod);
+  console.log("Find Button: " + "(" + id + ") " + prod);
 
-  /*API.getMatchingProducts(prod).then(function(data) {
+  API.getMatchingProducts(reformatName).then(function(data) 
+  {
     console.log("prodData", data);
-  });*/
+    console.log("data.length = " + data.length);
+    var resultDiv = $("#find-results");
+    var stores = [];
+    for (var i = 0; i < data.length; i++)
+    {
+      var storeID = data[i].StoreId;
+
+      if(!stores.includes(storeID))
+      {
+        stores.push(storeID);
+        var newDiv = $("<div>");
+        newDiv.text("Store ID " + storeID);
+        resultDiv.append(newDiv);
+      }
+
+    } 
+
+  });
+
 });
 
 

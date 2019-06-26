@@ -5,7 +5,7 @@
         <h4><a href="/">Home</a></h4>
         <h4><a href="/locations">All Locations</a></h4>
         <div>
-            <h1 id="prodName">{{product.name}}</h1>
+            <h1 id="prodName" data-prod="{{product.id}}">{{product.name}}</h1>
             <div> 
                 Brand: {{product.brand}}<br>
                 Quantity: {{product.quantity}}<br>
@@ -20,7 +20,7 @@
                 <h4>Results: </h4>
                 <div id="find-results"></div>
             </div>
-            <div><!--
+            <div>
                 <h3>Products</h3>
                 {{#each store.Products}}
                 <div> 
@@ -33,7 +33,7 @@
                     <strong>Price: </strong>${{price}}
                 </p>
                 </div>
-                {{/each}}-->
+                {{/each}}
             </div>
         </div>
       </div>

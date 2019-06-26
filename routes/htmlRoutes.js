@@ -1,6 +1,10 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  console.log("------------------------------");
+console.log("htmlRoutes app:", app);
+console.log("------------------------------");
+
   // Load index page
   app.get("/", function(req, res) 
   {
@@ -91,7 +95,7 @@ module.exports = function(app) {
   });*/
 
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  /*app.get("*", function(req, res) {
     res.render("404");
-  });
+  });*/
 };

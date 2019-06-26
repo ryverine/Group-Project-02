@@ -2,6 +2,39 @@ var db = require("../models");
 
 module.exports = function(app) {
 
+  // Get all examples
+  /*app.get("/api/products/:id", function(req, res) 
+  {
+    //var prodName = "NO. 32 CINNAMON FUNNEL CAKE NS";// req.params.name 
+    //var idNum = Number.parseInt();
+    db.Product.findAll({where:{id: req.params.id}}).then(function(dbProducts) 
+    {
+      console.log("------------------------------");
+      console.log("dbProducts", dbProducts);
+      console.log("------------------------------");
+      res.json(dbProducts);
+    });
+
+  });*/
+
+  app.get("/product/api/products/:name", function(req, res) 
+  {
+    console.log("http://localhost:3000/product/api/products/" + req.params.name);
+    var prodName = req.params.name; //"NO. 32 CINNAMON FUNNEL CAKE NS";// req.params.name 
+    //var idNum = Number.parseInt();
+    var reformatName = prodName.split('+').join(' ');
+    console.log("reformatName", reformatName);
+
+    db.Product.findAll({where:{name: reformatName}}).then(function(dbProducts) 
+    {
+      console.log("------------------------------");
+      console.log("dbProducts", dbProducts);
+      console.log("------------------------------");
+      res.json(dbProducts);
+    });
+
+  });
+
 
   /*app.get("/api/products/:productName", function(req, res) {
     console.log("req.params.productName = " + req.params.productName);
