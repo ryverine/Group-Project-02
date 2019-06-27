@@ -23,17 +23,82 @@ module.exports = function(app) {
     var prodName = req.params.name; //"NO. 32 CINNAMON FUNNEL CAKE NS";// req.params.name 
     //var idNum = Number.parseInt();
     var reformatName = prodName.split('+').join(' ');
-    console.log("reformatName", reformatName);
+    console.log("reformatName:", reformatName);
 
-    db.Product.findAll({where:{name: reformatName}}).then(function(dbProducts) 
+    db.Product.findAll({
+      where:{name: reformatName}
+    }).then(function(dbProducts) 
     {
       console.log("------------------------------");
-      console.log("dbProducts", dbProducts);
+      //console.log("dbProducts", dbProducts);
       console.log("------------------------------");
       res.json(dbProducts);
     });
 
+    // trying the getProductsByName(productName) scope
+    /*db.Product.scope({method: ['getProductsByName',reformatName]}).findAll({}).then(function(dbProducts) 
+    {
+      console.log("------------------------------");
+      console.log("scope({method: ['getProductsByName',"+reformatName+"]})");
+      console.log("dbProducts", dbProducts);
+      console.log("------------------------------");
+      res.json(dbProducts);
+    });*/
+
   });
+
+  //Project.scope('random', { method: ['accessLevel', 19]}).findAll();
+//getProductsByName(productName){
+
+  app.get("/product/api/stores/:storeids", function(req, res)
+  {
+
+    var idStr = req.params.storeids.replace("storeids=+","");
+
+    console.log("------------------------------");
+    console.log("storeids = ", idStr);
+    console.log("------------------------------"); 
+
+    var storeIdArr = idStr.split('+'); 
+    /*for (var i = 0; i < idStr.length; i++)
+    {
+      if(idStr.charAt(i) != "+")
+      {
+        storeIdArr.push(idStr.charAt(i));
+      }
+    }*/
+
+    console.log("------------------------------");
+    console.log("storeIdArr", storeIdArr);
+    console.log("------------------------------"); 
+
+    db.Store.findAll({
+      where:{
+        id: storeIdArr
+      }
+    }).then(function(dbStores) 
+    {
+      console.log("------------------------------");
+      //console.log("dbProducts", dbProducts);
+      console.log("------------------------------");
+      res.json(dbStores);
+    });
+
+
+    /*Post.findAll({
+      where: {
+        authorId: {
+          [Op.or]: [12, 13]
+        }
+      }
+    });
+
+    [Op.in]: [1, 2],           // IN [1, 2]*/
+  });
+
+
+
+
 
 
   /*app.get("/api/products/:productName", function(req, res) {

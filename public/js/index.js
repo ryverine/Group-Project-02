@@ -29,49 +29,68 @@ var API = {
     });
   },
   getMatchingProducts: function(name) {
-    console.log("getMatchingProducts("+name+")");
+    // console.log("getMatchingProducts("+name+")");
     return $.ajax({
       url: "api/products/" + name,
       type: "GET"
     });
     //http://localhost:3000/product/api/products/94
+  },
+  getStoresById: function(storeids)
+  {
+    return $.ajax({
+      url: "api/stores/" + storeids,
+      //data: { storeids: idArr },
+      type: "GET"
+    });
   }
 };
 
+
 $( ".btn-find" ).click(function() {
-  //event.preventDefault();
   var prod = $("#prodName").text();
   var id =  $("#prodName").attr("data-prod");
-  //var prod = "abc";
-  //var noSpace = prod.split(' ').join('+');
   var reformatName = prod.split(' ').join('+');
-  //var noDot = noSpace.split('.').join('-');
-  console.log("Find Button: " + "(" + id + ") " + prod);
-
   API.getMatchingProducts(reformatName).then(function(data) 
   {
     console.log("prodData", data);
     console.log("data.length = " + data.length);
-    var resultDiv = $("#find-results");
+    
     var stores = [];
-    for (var i = 0; i < data.length; i++)
-    {
+    var storeIdStr = "storeids=";
+    for (var i = 0; i < data.length; i++){
       var storeID = data[i].StoreId;
-
-      if(!stores.includes(storeID))
-      {
-        stores.push(storeID);
-        var newDiv = $("<div>");
-        newDiv.text("Store ID " + storeID);
-        resultDiv.append(newDiv);
+      if(!stores.includes(storeID)){
+        //stores.push(storeID);
+        storeIdStr += "+" + storeID;
       }
-
     } 
-
+    getStoresForProduct(storeIdStr);
   });
 
 });
 
+function getStoresForProduct(storeids)
+{
+  API.getStoresById(storeids).then(function(data)
+  {
+    console.log("store data = ", data);
+    var resultDiv = $("#find-results");
+    resultDiv.empty();
+
+    for (var i = 0; i < data.length; i++)
+    {
+      var storeName = data[i].name;
+      var storeNameDiv = $("<div>");
+      var storeLink = $("<a>");
+      storeLink.attr("href", "/store/" + data[i].id);
+      storeLink.text(storeName);
+      storeNameDiv.append(storeLink);
+      resultDiv.append(storeNameDiv);
+    }
+  });
+}
+// <strong><a href="/store/{{id}}">{{name}}</a></strong><br></br>
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
