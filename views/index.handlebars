@@ -7,7 +7,8 @@
         <h2>This is our Home Page!</h2>
         <h3><a href="/locations">All Locations</a></h3>
 
-        <form class="clearfix mb-4" action="POST">
+        <form id="searchForm" class="clearfix mb-4" method="get">
+          <!-- <form id="searchForm" class="clearfix mb-4" action="/products" method="get"> -->
           <div class="form-group">
             <label for="example-text">Search For Product</label>
             <input type="text" id="product-search" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">

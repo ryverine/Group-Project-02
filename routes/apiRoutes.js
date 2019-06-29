@@ -6,13 +6,20 @@ module.exports = function(app) {
   app.get("/api/products/:searchStr", function(req, res) 
   {
     var reformatedName = req.params.searchStr.split('+').join(' ').trim();
+
+    console.log("------------------------------");
+    console.log("req.params.searchStr = ", req.params.searchStr);
+    console.log("reformatedName  = ", reformatedName);
+    console.log("------------------------------");
+    
     db.Product.findAll({
       where: {
         name: {
           [seq.Op.substring]: reformatedName
         }
       }
-    }).then(function(dbProducts) {
+    }).then(function(dbProducts) 
+    {
       res.render("products", {searchResults: dbProducts});
       //res.json(dbProducts);
     }).catch(function(error){
@@ -21,6 +28,10 @@ module.exports = function(app) {
       console.log("------------------------------");
     });
   });
+
+
+
+
 
   app.get("/product/api/products/:name", function(req, res) 
   {

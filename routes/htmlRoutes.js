@@ -34,7 +34,6 @@ module.exports = function(app) {
       where: { id: req.params.id }
     }).then(function(dbLocation) 
     {
-      // console.log("dbLocations.dataValues", dbLocation.dataValues);
       res.render("location", {
         location: dbLocation
       });
@@ -52,7 +51,6 @@ module.exports = function(app) {
       where: { id: req.params.id }
     }).then(function(dbStore) 
     {
-      // console.log("dbStore.dataValues", dbStore.dataValues);
       res.render("store", {
         store: dbStore
       });
@@ -69,17 +67,12 @@ module.exports = function(app) {
       where: { id: req.params.id }
     }).then(function(dbProduct) 
     {
-      console.log("------------------------------");
-      //console.log("dbProduct", dbProduct);
-      //console.log("dbProduct.name", dbProduct.name);
-      //var prodName = dbProduct.name;
-      //console.log("dbProds", prods);
-      console.log("------------------------------");
       res.render("product", {
         product: dbProduct
       });
     });
   });
+
 
   /* Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) 
