@@ -1,76 +1,47 @@
 var db = require("../models");
+var seq = require("sequelize");
 
 module.exports = function(app) {
 
-  // Get all examples
-  /*app.get("/api/products/:id", function(req, res) 
+  app.get("/api/products/:searchStr", function(req, res) 
   {
-    //var prodName = "NO. 32 CINNAMON FUNNEL CAKE NS";// req.params.name 
-    //var idNum = Number.parseInt();
-    db.Product.findAll({where:{id: req.params.id}}).then(function(dbProducts) 
-    {
+    var reformatedName = req.params.searchStr.split('+').join(' ').trim();
+    db.Product.findAll({
+      where: {
+        name: {
+          [seq.Op.substring]: reformatedName
+        }
+      }
+    }).then(function(dbProducts) {
+      res.render("products", {searchResults: dbProducts});
+      //res.json(dbProducts);
+    }).catch(function(error){
       console.log("------------------------------");
-      console.log("dbProducts", dbProducts);
+      console.log(error);
       console.log("------------------------------");
-      res.json(dbProducts);
     });
-
-  });*/
+  });
 
   app.get("/product/api/products/:name", function(req, res) 
   {
     console.log("http://localhost:3000/product/api/products/" + req.params.name);
-    var prodName = req.params.name; //"NO. 32 CINNAMON FUNNEL CAKE NS";// req.params.name 
-    //var idNum = Number.parseInt();
+    var prodName = req.params.name; 
     var reformatName = prodName.split('+').join(' ');
     console.log("reformatName:", reformatName);
-
     db.Product.findAll({
-      where:{name: reformatName}
+      where: { name: reformatName }
     }).then(function(dbProducts) 
     {
-      console.log("------------------------------");
-      //console.log("dbProducts", dbProducts);
-      console.log("------------------------------");
       res.json(dbProducts);
     });
-
-    // trying the getProductsByName(productName) scope
-    /*db.Product.scope({method: ['getProductsByName',reformatName]}).findAll({}).then(function(dbProducts) 
-    {
-      console.log("------------------------------");
-      console.log("scope({method: ['getProductsByName',"+reformatName+"]})");
-      console.log("dbProducts", dbProducts);
-      console.log("------------------------------");
-      res.json(dbProducts);
-    });*/
-
   });
 
-  //Project.scope('random', { method: ['accessLevel', 19]}).findAll();
-//getProductsByName(productName){
 
   app.get("/product/api/stores/:storeids", function(req, res)
   {
-
     var idStr = req.params.storeids.replace("storeids=+","");
 
-    console.log("------------------------------");
-    console.log("storeids = ", idStr);
-    console.log("------------------------------"); 
-
     var storeIdArr = idStr.split('+'); 
-    /*for (var i = 0; i < idStr.length; i++)
-    {
-      if(idStr.charAt(i) != "+")
-      {
-        storeIdArr.push(idStr.charAt(i));
-      }
-    }*/
-
-    console.log("------------------------------");
-    console.log("storeIdArr", storeIdArr);
-    console.log("------------------------------"); 
 
     db.Store.findAll({
       where:{
@@ -78,22 +49,9 @@ module.exports = function(app) {
       }
     }).then(function(dbStores) 
     {
-      console.log("------------------------------");
-      //console.log("dbProducts", dbProducts);
-      console.log("------------------------------");
       res.json(dbStores);
     });
 
-
-    /*Post.findAll({
-      where: {
-        authorId: {
-          [Op.or]: [12, 13]
-        }
-      }
-    });
-
-    [Op.in]: [1, 2],           // IN [1, 2]*/
   });
 
 

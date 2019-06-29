@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     {
       timestamps: false
-    },
+    }/*,
     {
       scopes:
       { //Project.scope('random', { method: ['accessLevel', 19]}).findAll();
@@ -63,7 +63,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
       }
-    }
+    }*/
   );
 
   Product.associate = function(models) {

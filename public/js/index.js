@@ -34,13 +34,19 @@ var API = {
       url: "api/products/" + name,
       type: "GET"
     });
-    //http://localhost:3000/product/api/products/94
   },
   getStoresById: function(storeids)
   {
     return $.ajax({
       url: "api/stores/" + storeids,
       //data: { storeids: idArr },
+      type: "GET"
+    });
+  },
+  searchForProduct(theProduct)
+  {
+    return $.ajax({
+      url: "api/products/" + theProduct,
       type: "GET"
     });
   }
@@ -123,7 +129,8 @@ var refreshExamples = function() {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+/*var handleFormSubmit = function(event) 
+{
   event.preventDefault();
 
   var example = {
@@ -142,7 +149,39 @@ var handleFormSubmit = function(event) {
 
   $exampleText.val("");
   $exampleDescription.val("");
+};*/
+
+
+//$submitBtn.on("click", function()
+var handleFormSubmit = function(event) {
+  // event.preventDefault();
+  var searchTerms = $("#product-search").val().trim();
+  var formattedStr = "";
+  console.log("searchTerms = ", searchTerms);
+  for (var i = 0; i < searchTerms.length; i++)
+  {
+    if(searchTerms.charAt(i) === " ")
+    {
+      formattedStr += "+";
+    }
+    else
+    {
+      formattedStr += searchTerms.charAt(i);
+    }
+  }
+  console.log("formattedStr = ", formattedStr);
+  if(formattedStr.length > 0)
+  {
+    API.searchForProduct(formattedStr).then(function(data){
+      console.log("data = ", data);
+    });
+  }
+  
 };
+
+
+
+
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
@@ -158,4 +197,5 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
+
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
