@@ -5,7 +5,7 @@
         <h4><a href="/">Home</a></h4>
         <h4><a href="/locations">All Locations</a></h4>
         <div>
-            <h1>{{store.name}}</h1>
+            <h1 id="store-name" data-store-id={{store.id}}>{{store.name}}</h1>
             <div> 
                 Address Line 1: {{store.addrln1}}<br>
                 Address Line 2: {{store.addrln2}}<br>
@@ -32,16 +32,33 @@
                 {{/each}}
             </div>
 
-              <div>
-                <h3>User Comments</h3>
-                <div><!-- SECTION TO ADD COMMENT --></div>
+            <div>
+
+              <h3>User Comments</h3>
+
+                <div>
+                  <!-- SECTION TO ADD COMMENT -->
+                    <form id="commentForm" class="clearfix mb-4" method="post">
+                      <div class="form-group">
+                        <label for="example-text">Add  Comment</label>
+                        <textarea id="user-added-comment" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text"></textarea>
+                      </div>
+                    <button id="comment-submit" class="btn btn-primary float-right">Submit</button>
+                  </form>
+                </div>
+
+                <div id="user-comment-list">
                 {{#each store.Store_Comments}}
-                  <strong>User:</strong> {{User.first_name}}<br>
-                  <strong>Posted:</strong> {{updatedAt}}<br>
-                  {{comment}}
-                  <hr>
+                  <div>
+                    <h5 data-user-id="{{User.id}}">{{User.first_name}} says:</h5>
+                    {{comment}}<br>
+                    <strong>Posted:</strong> {{updatedAt}}<br>
+                    <hr>
+                  </div>
                 {{/each}}
               </div>
+
+            </div>
         </div>
       </div>
     </div>

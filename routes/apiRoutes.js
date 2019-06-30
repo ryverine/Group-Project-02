@@ -35,10 +35,8 @@ module.exports = function(app) {
 
   app.get("/product/api/products/:name", function(req, res) 
   {
-    //console.log("http://localhost:3000/product/api/products/" + req.params.name);
     var prodName = req.params.name; 
     var reformatName = prodName.split('+').join(' ');
-    //console.log("reformatName:", reformatName);
     db.Product.findAll({
       where: { name: reformatName }
     }).then(function(dbProducts) 
@@ -66,7 +64,11 @@ module.exports = function(app) {
   });
 
 
-
+  app.post("/store/api/storecomment", function(req, res) {
+    db.Store_Comment.create(req.body).then(function(dbNewComment) {
+      res.json(dbNewComment);
+    });
+  });
 
 
 

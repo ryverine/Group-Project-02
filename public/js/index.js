@@ -1,3 +1,4 @@
+//import { createDeflate } from "zlib";
 
 
 $(document).ready(function() 
@@ -58,6 +59,17 @@ var API = {
     return $.ajax({
       url: "api/products/" + theProduct,
       type: "GET"
+    });
+  },
+  addStoreComment(commentObj)
+  {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/storecomment",
+      data: JSON.stringify(commentObj)
     });
   }
 };
@@ -266,7 +278,81 @@ $('#signInForm').submit(function ()
 });
 
 
+//commentForm
+$( "#comment-submit" ).click(function(event){
+  event.preventDefault();
+  
+  // get user id from local storage
+  var user = 4; // Ryan
+  // need store id
+  var store = $("#store-name").attr("data-store-id");
+
+  var newComment = $("#user-added-comment").val().trim();
+  // createdAt
+  // updateAt
+
+  console.log("--------------------");
+  console.log("store id = " + store);
+  console.log(newComment);
+
+  var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
+
+  var commentObj = {
+    comment: newComment,
+    createdAt: currTime,
+    updatedAt: currTime,
+    StoreId: store,
+    UserId: user
+  };
+
+  API.addStoreComment(commentObj).then(function(data)
+  {
+    //console.log("--New Comment Created -------------------------");
+    //console.log("data from POST", data);
+    location.reload();
+  });
+
+
+})
+
+
+
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+
+// user page - edit comment
+$(document).on("click", "button.edit-comment", function() 
+{
+  var store_comment = $(this).attr("data-comment");
+  var user = $("#user-profile-section").attr("data-user");
+  var store = $(this).attr("data-store");
+  var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
+  var comment_text = "";
+
+  console.log("-- UPDATE Comment ---------------------------");
+  console.log("CommentID: " + store_comment);
+  console.log("UserID: " + user);
+  console.log("StoreID: " + store);
+  console.log("UpdatedAt: " + currTime);
+
+});
+
+// user page - delete comment
+$(document).on("click", "button.delete-comment", function() 
+{
+  var store_comment = $(this).attr("data-comment");
+  var user = $("#user-profile-section").attr("data-user");
+  var store = $(this).attr("data-store");
+  var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
+ 
+  console.log("-- DELETE Comment ---------------------------");
+  console.log("CommentID: " + store_comment);
+  console.log("UserID: " + user);
+  console.log("StoreID: " + store);
+  console.log("UpdatedAt: " + currTime);
+});
+
+
 
 
 }); // DOCUMENT LOAD

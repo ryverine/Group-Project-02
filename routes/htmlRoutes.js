@@ -100,16 +100,6 @@ module.exports = function(app) {
     var cred = req.params.cred.split("+");
     var email_input = cred[0];
     var password_input = cred[1];
-
-    //console.log("--------------------------");
-    //console.log("req.params.cred = ", req.params.cred);
-    //console.log("email = ", email_input);
-    //console.log("password = ", password_input);
-    //console.log("--------------------------");
-
-    // search for email and password
-    // go to user page
-
     
   db.User.findAll({
     include: [{model: db.Store_Comment,
@@ -137,8 +127,33 @@ module.exports = function(app) {
     
   });
 
+
+
+
+  app.get('/user/:id', function(req, res) {
+    db.User.findOne({
+        include: [{model: db.Store_Comment,
+                  include: [db.Store]}],
+          where: {
+            id: req.params.id
+          }
+    }).then(function(dbUser){
+      res.render("user", {user: dbUser});
+    });
+  });
+
+
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
   });
+
+
+
+
+
+
+
+
 };

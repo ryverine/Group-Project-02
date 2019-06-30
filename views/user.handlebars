@@ -8,7 +8,7 @@
         {{#if user}}
             <h1>Welcome back, {{user.first_name}}!</h1>
             <h3>Your Info</h3>
-            <div> 
+            <div id="user-profile-section" data-user="{{user.id}}"> 
                 Name: {{user.first_name}} {{user.last_name}} <br>
                 Email: {{user.email}}
             </div>
@@ -16,12 +16,14 @@
                 <h3>Comments You Have Made:</h3>
                 {{#each user.Store_Comments}}
                 <div> 
-                <strong><a href="/product/{{id}}">{{name}}</a></strong>
-                <p>
                     <strong>Store: </strong><a href="/store/{{Store.id}}">{{Store.name}}</a><br>
                     <strong>Posted: </strong>{{updatedAt}}<br>
                     <strong>Comment: </strong>{{comment}}<br>
-                </p>
+
+                    <button class="edit-comment" data-comment="{{id}}" data-store="{{Store.id}}">Edit</button>
+
+                    <button class="delete-comment" data-comment="{{id}}" data-store="{{Store.id}}">Delete</button>
+                    <hr>
                 </div>
                 {{/each}}
             </div>
