@@ -36,7 +36,7 @@
                 <h3>User Comments</h3>
                 <div><!-- SECTION TO ADD COMMENT --></div>
                 {{#each store.Store_Comments}}
-                  <strong>User:</strong> {{userID}}<br>
+                  <strong>User:</strong> {{User.first_name}}<br>
                   <strong>Posted:</strong> {{updatedAt}}<br>
                   {{comment}}
                   <hr>

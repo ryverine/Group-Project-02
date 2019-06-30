@@ -7,10 +7,10 @@ module.exports = function(app) {
   {
     var reformatedName = req.params.searchStr.split('+').join(' ').trim();
 
-    console.log("------------------------------");
-    console.log("req.params.searchStr = ", req.params.searchStr);
-    console.log("reformatedName  = ", reformatedName);
-    console.log("------------------------------");
+    //console.log("------------------------------");
+    //console.log("req.params.searchStr = ", req.params.searchStr);
+    //console.log("reformatedName  = ", reformatedName);
+    //console.log("------------------------------");
     
     db.Product.findAll({
       where: {
@@ -35,10 +35,10 @@ module.exports = function(app) {
 
   app.get("/product/api/products/:name", function(req, res) 
   {
-    console.log("http://localhost:3000/product/api/products/" + req.params.name);
+    //console.log("http://localhost:3000/product/api/products/" + req.params.name);
     var prodName = req.params.name; 
     var reformatName = prodName.split('+').join(' ');
-    console.log("reformatName:", reformatName);
+    //console.log("reformatName:", reformatName);
     db.Product.findAll({
       where: { name: reformatName }
     }).then(function(dbProducts) 

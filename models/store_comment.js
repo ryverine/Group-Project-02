@@ -20,6 +20,12 @@ module.exports = function(sequelize, DataTypes)
         allowNull: false
           }
         });
+
+        Store_Comment.belongsTo(models.User, {
+          foreignKey: {
+        allowNull: false
+          }
+        });
       };
 
     return Store_Comment;

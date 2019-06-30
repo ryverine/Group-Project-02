@@ -50,7 +50,8 @@ module.exports = function(app) {
     { 
       include: [{model: db.Product},
         {model: db.Store_Comment, 
-        order: ['updatedAt', 'DESC']
+        order: ['updatedAt', 'DESC'],
+        include: [db.User]
       }],
       where: { id: req.params.id }
     }).then(function(dbStore) 
@@ -119,12 +120,12 @@ module.exports = function(app) {
       }
     }).then(function(dbUser) 
     {
-      console.log("------------------------------");
-      console.log("dbUser:", dbUser);
-      console.log("------------------------------");
+      //console.log("------------------------------");
+      //console.log("dbUser:", dbUser);
+      //console.log("------------------------------");
       for (var i = 0; i < dbUser[0].Store_Comments.length; i++)
       {
-        console.log("Store_Comments["+i+"] = ", dbUser[0].Store_Comments[i]);
+        //console.log("Store_Comments["+i+"] = ", dbUser[0].Store_Comments[i]);
       }
       res.render("user", {user: dbUser[0]});
       //res.json(dbProducts);
@@ -134,30 +135,6 @@ module.exports = function(app) {
       console.log("------------------------------");
     });
     
-/*
-  // load store page
-  // page for specific store
-  app.get("/store/:id", function(req, res) 
-  {
-    db.Store.findOne(
-    { 
-      include: [{model: db.Product},
-        {model: db.Store_Comment, 
-        order: ['updatedAt', 'DESC']
-      }],
-      where: { id: req.params.id }
-    }).then(function(dbStore) 
-    {
-      //console.log("--------------------------");
-      //console.log("dbStore: ", dbStore);
-      //console.log("--------------------------");
-      res.render("store", {
-        store: dbStore
-      });
-    });
-  });
-
-*/
   });
 
   // Render 404 page for any unmatched routes
