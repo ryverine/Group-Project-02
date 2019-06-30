@@ -42,17 +42,17 @@ module.exports = function(sequelize, DataTypes)
       timestamps: false
     });
     
-    Store.associate = function(models) 
-    {
+
+
+      Store.associate = function(models) 
+      {
+
         Store.belongsTo(models.Location, {
           foreignKey: {
             allowNull: false
           }
         });
-      };
-
-      Store.associate = function(models) 
-      {
+        
           Store.hasMany(models.Product, {
             foreignKey: {
               allowNull: false

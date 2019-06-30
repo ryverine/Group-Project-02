@@ -55,9 +55,9 @@ module.exports = function(app) {
       where: { id: req.params.id }
     }).then(function(dbStore) 
     {
-      console.log("--------------------------");
-      console.log("dbStore: ", dbStore);
-      console.log("--------------------------");
+      //console.log("--------------------------");
+      //console.log("dbStore: ", dbStore);
+      //console.log("--------------------------");
       res.render("store", {
         store: dbStore
       });
@@ -100,18 +100,19 @@ module.exports = function(app) {
     var email_input = cred[0];
     var password_input = cred[1];
 
-    console.log("--------------------------");
-    console.log("req.params.cred = ", req.params.cred);
-    console.log("email = ", email_input);
-    console.log("password = ", password_input);
-    console.log("--------------------------");
+    //console.log("--------------------------");
+    //console.log("req.params.cred = ", req.params.cred);
+    //console.log("email = ", email_input);
+    //console.log("password = ", password_input);
+    //console.log("--------------------------");
 
     // search for email and password
     // go to user page
 
     
   db.User.findAll({
-    include: [db.Store_Comment],
+    include: [{model: db.Store_Comment,
+              include: [db.Store]}],
       where: {
         email: email_input,
         [seq.Op.and]: {password: password_input}    
@@ -121,6 +122,10 @@ module.exports = function(app) {
       console.log("------------------------------");
       console.log("dbUser:", dbUser);
       console.log("------------------------------");
+      for (var i = 0; i < dbUser[0].Store_Comments.length; i++)
+      {
+        console.log("Store_Comments["+i+"] = ", dbUser[0].Store_Comments[i]);
+      }
       res.render("user", {user: dbUser[0]});
       //res.json(dbProducts);
     }).catch(function(error){
@@ -129,7 +134,30 @@ module.exports = function(app) {
       console.log("------------------------------");
     });
     
+/*
+  // load store page
+  // page for specific store
+  app.get("/store/:id", function(req, res) 
+  {
+    db.Store.findOne(
+    { 
+      include: [{model: db.Product},
+        {model: db.Store_Comment, 
+        order: ['updatedAt', 'DESC']
+      }],
+      where: { id: req.params.id }
+    }).then(function(dbStore) 
+    {
+      //console.log("--------------------------");
+      //console.log("dbStore: ", dbStore);
+      //console.log("--------------------------");
+      res.render("store", {
+        store: dbStore
+      });
+    });
+  });
 
+*/
   });
 
   // Render 404 page for any unmatched routes
