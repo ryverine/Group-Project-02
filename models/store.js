@@ -58,8 +58,14 @@ module.exports = function(sequelize, DataTypes)
               allowNull: false
             }
           });
-        };
 
+          Store.hasMany(models.Store_Comment, {
+            foreignKey: {
+              allowNull: false
+            }
+          });
+
+        };
     
 
     return Store;

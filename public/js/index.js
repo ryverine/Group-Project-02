@@ -224,8 +224,6 @@ var handleDeleteBtnClick = function() {
 
 $('#searchForm').submit(function ()
 {
-  // alert("FORM SUBMIT");
-  //<input type="hidden" name="a" value="1" /> 
 
   var searchTerms = $("#product-search").val().trim();
   var formattedStr = "";
@@ -244,13 +242,24 @@ $('#searchForm').submit(function ()
     }
   }
 
-  var hiddenInput = $("<input>");
-  hiddenInput.attr("value", formattedStr);
-  hiddenInput.attr("name", "searchfor");
-
   console.log("formattedStr = ", formattedStr);
 
   var action = '/api/products/' + formattedStr;
+  // compute action here...
+  $(this).attr('action', action);
+
+});
+
+
+$('#signInForm').submit(function ()
+{
+
+  var email = $("#signin-email").val().trim();
+  var password = $("#signin-password").val().trim();
+
+  var cred = email + "+" + password;
+
+  var action = '/user/signin/' + cred;
   // compute action here...
   $(this).attr('action', action);
 

@@ -15,6 +15,7 @@
                  <h3>Description:</h3>
                  {{store.description}}<br>
             </div>
+
             <div>
                 <h3>Products</h3>
                 {{#each store.Products}}
@@ -30,6 +31,17 @@
                 </div>
                 {{/each}}
             </div>
+
+              <div>
+                <h3>User Comments</h3>
+                <div><!-- SECTION TO ADD COMMENT --></div>
+                {{#each store.Store_Comments}}
+                  <strong>User:</strong> {{userID}}<br>
+                  <strong>Posted:</strong> {{updatedAt}}<br>
+                  {{comment}}
+                  <hr>
+                {{/each}}
+              </div>
         </div>
       </div>
     </div>

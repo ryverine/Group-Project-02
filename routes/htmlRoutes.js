@@ -1,4 +1,5 @@
 var db = require("../models");
+var seq = require("sequelize");
 
 module.exports = function(app) {
 
@@ -47,10 +48,16 @@ module.exports = function(app) {
   {
     db.Store.findOne(
     { 
-      include: [db.Product],
+      include: [{model: db.Product},
+        {model: db.Store_Comment, 
+        order: ['updatedAt', 'DESC']
+      }],
       where: { id: req.params.id }
     }).then(function(dbStore) 
     {
+      console.log("--------------------------");
+      console.log("dbStore: ", dbStore);
+      console.log("--------------------------");
       res.render("store", {
         store: dbStore
       });
@@ -83,6 +90,47 @@ module.exports = function(app) {
       });
     });
   });*/
+
+  app.get('/signin', function(req, res) {
+    res.render("signin", {});
+  });
+
+  app.get('/user/signin/:cred', function(req, res) {
+    var cred = req.params.cred.split("+");
+    var email_input = cred[0];
+    var password_input = cred[1];
+
+    console.log("--------------------------");
+    console.log("req.params.cred = ", req.params.cred);
+    console.log("email = ", email_input);
+    console.log("password = ", password_input);
+    console.log("--------------------------");
+
+    // search for email and password
+    // go to user page
+
+    
+  db.User.findAll({
+    include: [db.Store_Comment],
+      where: {
+        email: email_input,
+        [seq.Op.and]: {password: password_input}    
+      }
+    }).then(function(dbUser) 
+    {
+      console.log("------------------------------");
+      console.log("dbUser:", dbUser);
+      console.log("------------------------------");
+      res.render("user", {user: dbUser[0]});
+      //res.json(dbProducts);
+    }).catch(function(error){
+      console.log("------------------------------");
+      console.log(error);
+      console.log("------------------------------");
+    });
+    
+
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
