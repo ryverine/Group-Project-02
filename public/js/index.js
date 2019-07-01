@@ -15,6 +15,27 @@ var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 var $searchForm = $("searchForm");
 
+//User profile link needs to be updated with user id in local storage
+// var local_storage_user;
+if(JSON.parse(localStorage.getItem('userData')) != null)
+{
+  var localStorageData = JSON.parse(localStorage.getItem('userData'));
+  console.log("---------------------");
+  console.log("local_storage_data:", localStorageData );
+
+  $("#user-profile-link").attr("href", "/user/" + localStorageData.id);
+}
+else
+{
+  $("#user-profile-link").attr("href", "/user/0");
+  /*var local_storage_user = {
+    id: 0,
+    first_name: "",
+    last_name: "",
+    email: ""
+  }*/
+}
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
@@ -263,6 +284,7 @@ $('#searchForm').submit(function ()
 });
 
 
+/* Sign-In form submission
 $('#signInForm').submit(function ()
 {
 
@@ -274,6 +296,45 @@ $('#signInForm').submit(function ()
   var action = '/user/signin/' + cred;
   // compute action here...
   $(this).attr('action', action);
+
+});
+*/
+
+$( "#signin-submit" ).click(function(event)
+{
+  event.preventDefault();
+
+  var email = $("#signin-email").val().trim();
+  var password = $("#signin-password").val().trim();
+
+  var credentials = email + "+" + password;
+
+  // var action = '/user/signin/' + cred;
+
+  $.ajax({
+    url: "/user/signin/" + credentials,
+    type: "GET"
+  }).then(function(data) 
+  {
+    var userData = {
+      id: data.id,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email: data.email
+    }
+
+    localStorage.removeItem("userData");
+    localStorage.setItem("userData", JSON.stringify(userData));
+  
+    window.location.href = "/user/" + data.id;
+  });
+
+});
+
+$( "#btn-signout" ).click(function(event){
+
+  localStorage.removeItem("userData");
+  $("#user-profile-link").attr("href", "/user/0");
 
 });
 

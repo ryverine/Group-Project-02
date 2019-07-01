@@ -111,13 +111,37 @@ module.exports = function(app) {
     }).then(function(dbUser) 
     {
       //console.log("------------------------------");
-      //console.log("dbUser:", dbUser);
+      //console.log("dbUser: ", dbUser);
+      //console.log("dbUser: " +  dbUser);
+      //console.log("dbUser.length: " +  dbUser.length);
+      // console.log("dbUser[0].User: ", dbUser[0].User);
+      //console.log("dbUser[0].dataValues: ", dbUser[0].dataValues);
+      //console.log("dbUser[0].dataValues.id: ", dbUser[0].dataValues.id);
       //console.log("------------------------------");
-      for (var i = 0; i < dbUser[0].Store_Comments.length; i++)
+      // var userID = dbUser[0].dataValues.id;
+
+      if(dbUser.length > 0)
       {
-        //console.log("Store_Comments["+i+"] = ", dbUser[0].Store_Comments[i]);
+        res.json(dbUser[0].dataValues);
       }
-      res.render("user", {user: dbUser[0]});
+      else{
+        var emptyUser = {
+          id: 0,
+          first_name: "",
+          last_name: "",
+          email: ""
+        }
+
+        res.json(emptyUser);
+      }
+
+      // this was used when form 
+      // res.render("user", {user: dbUser[0]});
+
+      // redirect to /user/id of user
+      // res.redirect("/user/" + userID);
+
+
       //res.json(dbProducts);
     }).catch(function(error){
       console.log("------------------------------");
@@ -142,7 +166,10 @@ module.exports = function(app) {
     });
   });
 
-
+  app.get("/user", function(req, res) 
+  {
+      res.render("user", {});
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
