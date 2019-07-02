@@ -6,6 +6,7 @@
         <h4><a href="/locations">All Locations</a></h4>
         <h4><a id="user-profile-link" href="/user">User Profile</a></h4>
         <div><button id="btn-signout">Sign-Out</button></div>
+
         <div>
             <h1 id="store-name" data-store-id={{store.id}}>{{store.name}}</h1>
             <div> 
@@ -24,7 +25,6 @@
                 <div> 
                 <strong><a href="/product/{{id}}">{{name}}</a></strong>
                 <p>
-                    <strong>Name: </strong>{{name}}<br>
                     <strong>Description: </strong>{{description}}<br>
                     <strong>Brand: </strong>{{brand}}<br>
                     <strong>Quantity: </strong>{{quantity}}<br>
@@ -45,16 +45,20 @@
                         <label for="example-text">Add  Comment</label>
                         <textarea id="user-added-comment" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text"></textarea>
                       </div>
-                    <button id="comment-submit" class="btn btn-primary float-right">Submit</button>
+                    <button id="new-comment-submit" class="btn btn-primary float-right">Submit</button>
                   </form>
                 </div>
 
                 <div id="user-comment-list">
                 {{#each store.Store_Comments}}
-                  <div>
+                  <div class="user-comment" data-comment-id="{{id}}">
                     <h5 data-user-id="{{User.id}}">{{User.first_name}} says:</h5>
+                    <form>
                     {{comment}}<br>
                     <strong>Posted:</strong> {{updatedAt}}<br>
+                    <button class="user-comment-edit" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Edit</button>
+                    <button class="user-comment-delete" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Delete</button>
+                    </form>
                     <hr>
                   </div>
                 {{/each}}

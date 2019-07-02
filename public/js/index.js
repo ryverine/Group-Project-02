@@ -340,7 +340,7 @@ $( "#btn-signout" ).click(function(event){
 
 
 //commentForm
-$( "#comment-submit" ).click(function(event){
+$( "#new-comment-submit" ).click(function(event){
   event.preventDefault();
   
   // get user id from local storage
@@ -375,6 +375,76 @@ $( "#comment-submit" ).click(function(event){
 
 
 })
+
+
+$( ".user-comment" ).mouseenter(function()
+{
+    // local storage user id = ???
+
+    var localStorageData = JSON.parse(localStorage.getItem('userData'));
+    
+    // console.log("--- HOVER COMMENT -----------------");
+    // console.log("Store ID: " + storeID);
+    // console.log("User ID: " + userID);
+    // console.log("Comment ID: " + commentID);
+
+    if(localStorageData != null)
+    {
+      var commentID = $(this).attr("data-comment-id");
+      var userID = $(this).find("h5").attr("data-user-id");
+      var storeID = $("#store-name").attr("data-store-id"); 
+
+      if(Number.parseInt(localStorageData.id) === Number.parseInt(userID))
+      {
+        $(this).find("button").show();
+      }
+    }
+    else
+    {
+      console.log("LOCAL STORAGE = NULL");
+    }
+
+  });
+
+
+  $( ".user-comment" ).mouseleave(function() {
+    $(this).find("button").hide();
+  });
+  
+
+  $(document).on("click", "button.user-comment-edit", function() {
+    event.preventDefault();
+  });
+
+  $(document).on("click", "button.user-comment-delete", function() {
+    event.preventDefault();
+  });
+
+
+
+/*
+
+$( "div.enterleave" )
+  .mouseenter(function() {
+    $( "p:first", this ).text( "mouse enter" );
+    $( "p:last", this ).text( ++n );
+  })
+  .mouseleave(function() {
+    $( "p:first", this ).text( "mouse leave" );
+  });
+
+
+$(document).on("click", "button.delete-comment", function() {});
+
+$(document).on("click", "button.delete-comment", function() {});
+
+  $("input").prop('disabled', true);
+$("input").prop('disabled', false);
+  
+  event.preventDefault();
+
+*/
+
 
 
 
