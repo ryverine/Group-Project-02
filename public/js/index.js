@@ -92,7 +92,13 @@ var API = {
       url: "api/storecomment",
       data: JSON.stringify(commentObj)
     });
-  }
+  },
+  userDeleteComment: function(id) {
+    return $.ajax({
+      url: "api/store_comment/" + id,
+      type: "DELETE"
+    });
+  },
 };
 
 
@@ -116,7 +122,6 @@ $( ".btn-find" ).click(function() {
     } 
     getStoresForProduct(storeIdStr);
   });
-
 });
 
 function getStoresForProduct(storeids)
@@ -452,7 +457,7 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 
 // user page - edit comment
-$(document).on("click", "button.edit-comment", function() 
+$(document).on("click", "button.user-edit-comment", function() 
 {
   var store_comment = $(this).attr("data-comment");
   var user = $("#user-profile-section").attr("data-user");
@@ -469,18 +474,26 @@ $(document).on("click", "button.edit-comment", function()
 });
 
 // user page - delete comment
-$(document).on("click", "button.delete-comment", function() 
+$(document).on("click", "button.user-delete-comment", function() 
 {
   var store_comment = $(this).attr("data-comment");
-  var user = $("#user-profile-section").attr("data-user");
-  var store = $(this).attr("data-store");
-  var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
+  //var user = $("#user-profile-section").attr("data-user");
+  //var store = $(this).attr("data-store");
+  //var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
  
-  console.log("-- DELETE Comment ---------------------------");
-  console.log("CommentID: " + store_comment);
-  console.log("UserID: " + user);
-  console.log("StoreID: " + store);
-  console.log("UpdatedAt: " + currTime);
+  //console.log("-- DELETE Comment ---------------------------");
+  //console.log("CommentID: " + store_comment);
+  //console.log("UserID: " + user);
+  //console.log("StoreID: " + store);
+  //console.log("UpdatedAt: " + currTime);
+
+
+  API.userDeleteComment(store_comment).then(function(data)
+  {
+    //console.log("-- DELETE Comment -------------------------");
+    //console.log("data from DELETE", data);
+    location.reload();
+  });
 });
 
 

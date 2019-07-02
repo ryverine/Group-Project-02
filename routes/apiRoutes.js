@@ -71,6 +71,18 @@ module.exports = function(app) {
   });
 
 
+  // Delete a comment
+  app.delete("/user/api/store_comment/:id", function(req, res) 
+  {
+    db.Store_Comment.destroy({ 
+      where: { id: req.params.id } 
+    }).then(function(dbExample) {
+  
+      console.log("dbExample", dbExample);
+      res.json(dbExample);
+      // res.render user page
+    });
+  });
 
   /*app.get("/api/products/:productName", function(req, res) {
     console.log("req.params.productName = " + req.params.productName);
