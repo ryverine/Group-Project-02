@@ -19,13 +19,20 @@
                 <h3>Comments You Have Made:</h3>
                 {{#each user.Store_Comments}}
                 <div> 
+                    
                     <strong>Store: </strong><a href="/store/{{Store.id}}">{{Store.name}}</a><br>
                     <strong>Posted: </strong>{{updatedAt}}<br>
-                    <strong>Comment: </strong>{{comment}}<br>
+                    <strong>Comment: </strong><br>
+                    
+                    <form>
+                        <textarea class="user-comment-textarea" readonly>{{comment}}</textarea><br>
 
-                    <button class="user-edit-comment" data-comment="{{id}}" data-store="{{Store.id}}">Edit</button>
+                        <button class="user-edit-comment" data-comment="{{id}}" data-store="{{Store.id}}">Edit</button>
 
-                    <button class="user-delete-comment" data-comment="{{id}}" data-store="{{Store.id}}">Delete</button>
+                        <button class="user-save-comment" data-comment="{{id}}" data-store="{{Store.id}}" style="display:none;">Save/Cancel</button>
+
+                        <button class="user-delete-comment" data-comment="{{id}}" data-store="{{Store.id}}">Delete</button>
+                    </form>
                     <hr>
                 </div>
                 {{/each}}

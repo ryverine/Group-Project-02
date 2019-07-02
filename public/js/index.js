@@ -100,6 +100,14 @@ var API = {
       type: "DELETE"
     });
   },
+  updateComment(commentObj)
+  {
+    return $.ajax({
+      method: "PUT",
+      url: "/api/store_comment/" + commentObj.id,
+      data: commentObj
+    });
+  }
 };
 
 
@@ -374,40 +382,23 @@ $( "#new-comment-submit" ).click(function(event){
 
   API.addStoreComment(commentObj).then(function(data)
   {
-    //console.log("--New Comment Created -------------------------");
-    //console.log("data from POST", data);
     location.reload();
   });
-
-
-})
+});
 
 
 $( ".store-user-comment" ).mouseenter(function()
 {
-    // local storage user id = ???
-
     var localStorageData = JSON.parse(localStorage.getItem('userData'));
-    
-    // console.log("--- HOVER COMMENT -----------------");
-    // console.log("Store ID: " + storeID);
-    // console.log("User ID: " + userID);
-    // console.log("Comment ID: " + commentID);
 
     if(localStorageData != null)
     {
-      var commentID = $(this).attr("data-comment-id");
       var userID = $(this).find("h5").attr("data-user-id");
-      var storeID = $("#store-name").attr("data-store-id"); 
 
       if(Number.parseInt(localStorageData.id) === Number.parseInt(userID))
       {
         $(this).find("button").show();
       }
-    }
-    else
-    {
-      console.log("LOCAL STORAGE = NULL");
     }
 
   });
@@ -418,33 +409,19 @@ $( ".store-user-comment" ).mouseenter(function()
   });
   
 
-  $(document).on("click", "button.store-edit-comment", function() {
+  $(document).on("click", "button.store-edit-comment", function(event) {
     event.preventDefault();
   });
 
-  $(document).on("click", "button.store-delete-comment", function() {
+  $(document).on("click", "button.store-delete-comment", function(event) {
     event.preventDefault();
 
     var store_comment = $(this).attr("data-comment-id");
-    //var user = $("#user-profile-section").attr("data-user");
-    //var store = $(this).attr("data-store");
-    //var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
-   
-    //console.log("-- DELETE Comment ---------------------------");
-    //console.log("CommentID: " + store_comment);
-    //console.log("UserID: " + user);
-    //console.log("StoreID: " + store);
-    //console.log("UpdatedAt: " + currTime);
 
-    
     API.deleteComment(store_comment).then(function(data)
     {
-      //console.log("-- DELETE Comment -------------------------");
-      //console.log("data from DELETE", data);
       location.reload();
     });
-
-
   });
 
 
@@ -475,48 +452,94 @@ $("input").prop('disabled', false);
 
 
 
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+  // $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-
-// user page - edit comment
-$(document).on("click", "button.user-edit-comment", function() 
-{
-  var store_comment = $(this).attr("data-comment");
-  var user = $("#user-profile-section").attr("data-user");
-  var store = $(this).attr("data-store");
-  var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
-  var comment_text = "";
-
-  console.log("-- UPDATE Comment ---------------------------");
-  console.log("CommentID: " + store_comment);
-  console.log("UserID: " + user);
-  console.log("StoreID: " + store);
-  console.log("UpdatedAt: " + currTime);
-
-});
-
-// user page - delete comment
-$(document).on("click", "button.user-delete-comment", function() 
-{
-  var store_comment = $(this).attr("data-comment");
-  //var user = $("#user-profile-section").attr("data-user");
-  //var store = $(this).attr("data-store");
-  //var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
- 
-  //console.log("-- DELETE Comment ---------------------------");
-  //console.log("CommentID: " + store_comment);
-  //console.log("UserID: " + user);
-  //console.log("StoreID: " + store);
-  //console.log("UpdatedAt: " + currTime);
-
-
-  API.deleteComment(store_comment).then(function(data)
+  var initialComment = ""; 
+  // user page - edit comment
+  $(document).on("click", "button.user-edit-comment", function() 
   {
-    //console.log("-- DELETE Comment -------------------------");
-    //console.log("data from DELETE", data);
-    location.reload();
+    event.preventDefault();
+
+    //hide edit button
+    $(this).hide();
+    //show save button
+    $(this).parent().find("button.user-save-comment").show();
+    //make textarea editable
+    var textarea = $(this).parent().find("textarea");
+    textarea.prop('readonly', false);
+
+    initialComment = $(this).parent().find("textarea").text();
+    
   });
-});
+
+
+  $(document).on("click", "button.user-save-comment", function() 
+  {
+    event.preventDefault();
+
+    var storeCommentID = $(this).attr("data-comment");
+    var userID = $("#user-profile-section").attr("data-user");
+    var storeID = $(this).attr("data-store");
+    var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
+
+    var textarea = $(this).parent().find("textarea");
+    var newComment = textarea.text();
+
+    var submitChanges = confirm("Update your comment?");
+
+    if(submitChanges)
+    {
+      /*console.log("--EDIT COMMENT------------------------")
+      console.log(
+        "store_comment: " + storeCommentID + "\n" + 
+        "user: " + userID + "\n" + 
+        "store: " + storeID + "\n" + 
+        "currTime: " + currTime + "\n" + 
+        "initial comment: " + initialComment + "\n" +
+        "new comment: " + newComment);*/
+
+        var updatedComment = {
+          id: storeCommentID,
+          comment: newComment,
+          //createdAt: currTime, 
+          updatedAt: currTime
+          //StoreID: storeID,
+          //UserID: userID 
+        };
+
+        API.updateComment(updatedComment).then(function(data)
+        {
+          alert("data",data);
+          location.reload();
+        });
+    }
+    else
+    {
+      console.log("Comment updated cancled!");
+      textarea.text(initialComment);
+    }
+
+    //show edit button
+    $(this).parent().find("button.user-edit-comment").show();
+    //hide save button
+    $(this).hide();
+    // make textarea readonly
+    textarea.prop('readonly', true);
+
+  });
+
+  // user page - delete comment
+  $(document).on("click", "button.user-delete-comment", function() 
+  {
+      event.preventDefault();
+
+      var store_comment = $(this).attr("data-comment");
+
+      API.deleteComment(store_comment).then(function(data)
+      {
+        location.reload();
+      });
+  });
 
 
 

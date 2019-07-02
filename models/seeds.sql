@@ -84,15 +84,8 @@ VALUES
 	("3", "Jared","Test","jared@dankcity.com", "Welcome003"),
 	("4", "Ryan","Cheek","ryan@dankcity.com", "Welcome004");
     
-    
-    
-    -- users
-    -- 1
-    -- 2
-    -- 3
-    -- 4
-    
- INSERT INTO store_comments (id, comment, createdAt, updatedAt, StoreID, UserID) 
+
+ INSERT INTO store_comments (id, comment, updatedAt, StoreID, UserID) 
     VALUES
     (1, "test comment 1", now(), now(), 1, 1),
     (2, "test comment 2", now(), now(), 2, 2),
@@ -124,6 +117,7 @@ VALUES
     (28, "test comment 28", now(), now(), 8, 3),
     (29, "test comment 29", now(), now(), 14, 2),
     (30, "test comment 30", now(), now(), 4, 1);
+    
     
     
     

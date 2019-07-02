@@ -7,11 +7,6 @@ module.exports = function(app) {
   {
     var reformatedName = req.params.searchStr.split('+').join(' ').trim();
 
-    //console.log("------------------------------");
-    //console.log("req.params.searchStr = ", req.params.searchStr);
-    //console.log("reformatedName  = ", reformatedName);
-    //console.log("------------------------------");
-    
     db.Product.findAll({
       where: {
         name: {
@@ -29,10 +24,6 @@ module.exports = function(app) {
     });
   });
 
-
-
-
-
   app.get("/product/api/products/:name", function(req, res) 
   {
     var prodName = req.params.name; 
@@ -44,7 +35,6 @@ module.exports = function(app) {
       res.json(dbProducts);
     });
   });
-
 
   app.get("/product/api/stores/:storeids", function(req, res)
   {
@@ -63,37 +53,84 @@ module.exports = function(app) {
 
   });
 
-
   app.post("/store/api/storecomment", function(req, res) {
     db.Store_Comment.create(req.body).then(function(dbNewComment) {
       res.json(dbNewComment);
     });
   });
 
-
   // Delete a comment
   app.delete("*/api/store_comment/:id", function(req, res) 
   {
     db.Store_Comment.destroy({ 
       where: { id: req.params.id } 
-    }).then(function(dbExample) {
+    }).then(function(dbCommentsRemoved) {
   
-      console.log("dbExample", dbExample);
-      res.json(dbExample);
-      // res.render user page
+      //console.log("dbExample", dbCommentsRemoved);
+      res.json(dbCommentsRemoved);
+      
     });
   });
 
-  /*app.get("/api/products/:productName", function(req, res) {
-    console.log("req.params.productName = " + req.params.productName);
-    var product = req.params.productName;
-    var spaced = product.split('+').join(' ');
-    var dotted = spaced.split('-').join('.');
-    db.Product.getProductsByName(dotted).then(function(dbProducts) {
-      console.log("dbProducts", dbProducts);
-      res.json(dbProducts);
+  // edit store comment
+  // https://medium.com/@sarahdherr/sequelizes-update-method-example-included-39dfed6821d
+  app.put("*/api/store_comment/:id", function(req, res) 
+  {
+    console.log("------------------------------");
+    console.log("comment id: ", req.body.id);
+    console.log("comment: ", req.body.comment);
+    console.log("createdAt", req.body.createdAt);
+    console.log("updated at: ", req.body.updatedAt);
+    console.log("StoreID", req.body.StoreID);
+    console.log("UserID", req.body.UserID);
+    console.log("------------------------------");
+
+    // needs to be object
+    db.Store_Comment.update({
+        comment: req.body.comment,
+        //createdAt: req.body.createdAt,
+        updateAt: req.body.updateAt
+      },
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbComment){
+        res.json(dbComment);
+      }).catch(function(error){
+        console.log("------------------------------");
+        console.log(error);
+        console.log("------------------------------");
+      });
+
+  });
+
+
+
+  /*
+
+  // PUT route for updating todos. We can get the updated todo data from req.body
+  app.put("/api/todos", function(req, res) {
+    // Update takes in an object describing the properties we want to update, and
+    // we use where to describe which objects we want to update
+    db.Todo.update({
+      text: req.body.text,
+      complete: req.body.complete
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbTodo) {
+      res.json(dbTodo);
     });
-  });*/
+  });
+
+
+  */
+
+
+
+
 
 
   // Get all examples
