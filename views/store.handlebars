@@ -51,13 +51,13 @@
 
                 <div id="user-comment-list">
                 {{#each store.Store_Comments}}
-                  <div class="user-comment" data-comment-id="{{id}}">
+                  <div class="store-user-comment" data-comment-id="{{id}}">
                     <h5 data-user-id="{{User.id}}">{{User.first_name}} says:</h5>
                     <form>
                     {{comment}}<br>
                     <strong>Posted:</strong> {{updatedAt}}<br>
-                    <button class="user-comment-edit" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Edit</button>
-                    <button class="user-comment-delete" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Delete</button>
+                    <button class="store-edit-comment" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Edit</button>
+                    <button class="store-delete-comment" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Delete</button>
                     </form>
                     <hr>
                   </div>

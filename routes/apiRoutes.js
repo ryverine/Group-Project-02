@@ -72,7 +72,7 @@ module.exports = function(app) {
 
 
   // Delete a comment
-  app.delete("/user/api/store_comment/:id", function(req, res) 
+  app.delete("*/api/store_comment/:id", function(req, res) 
   {
     db.Store_Comment.destroy({ 
       where: { id: req.params.id } 

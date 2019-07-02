@@ -93,9 +93,10 @@ var API = {
       data: JSON.stringify(commentObj)
     });
   },
-  userDeleteComment: function(id) {
+  deleteComment(commentID) 
+  {
     return $.ajax({
-      url: "api/store_comment/" + id,
+      url: "api/store_comment/" + commentID,
       type: "DELETE"
     });
   },
@@ -382,7 +383,7 @@ $( "#new-comment-submit" ).click(function(event){
 })
 
 
-$( ".user-comment" ).mouseenter(function()
+$( ".store-user-comment" ).mouseenter(function()
 {
     // local storage user id = ???
 
@@ -412,17 +413,38 @@ $( ".user-comment" ).mouseenter(function()
   });
 
 
-  $( ".user-comment" ).mouseleave(function() {
+  $( ".store-user-comment" ).mouseleave(function() {
     $(this).find("button").hide();
   });
   
 
-  $(document).on("click", "button.user-comment-edit", function() {
+  $(document).on("click", "button.store-edit-comment", function() {
     event.preventDefault();
   });
 
-  $(document).on("click", "button.user-comment-delete", function() {
+  $(document).on("click", "button.store-delete-comment", function() {
     event.preventDefault();
+
+    var store_comment = $(this).attr("data-comment-id");
+    //var user = $("#user-profile-section").attr("data-user");
+    //var store = $(this).attr("data-store");
+    //var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
+   
+    //console.log("-- DELETE Comment ---------------------------");
+    //console.log("CommentID: " + store_comment);
+    //console.log("UserID: " + user);
+    //console.log("StoreID: " + store);
+    //console.log("UpdatedAt: " + currTime);
+
+    
+    API.deleteComment(store_comment).then(function(data)
+    {
+      //console.log("-- DELETE Comment -------------------------");
+      //console.log("data from DELETE", data);
+      location.reload();
+    });
+
+
   });
 
 
@@ -488,7 +510,7 @@ $(document).on("click", "button.user-delete-comment", function()
   //console.log("UpdatedAt: " + currTime);
 
 
-  API.userDeleteComment(store_comment).then(function(data)
+  API.deleteComment(store_comment).then(function(data)
   {
     //console.log("-- DELETE Comment -------------------------");
     //console.log("data from DELETE", data);
