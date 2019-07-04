@@ -3,52 +3,21 @@
     <div class="row">
       <div class="col-8 offset-2">
 
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <h3><a href="/signin">Sign-In</a></h3>
-        <h3><a href="/locations">All Locations</a></h3>
+        <h2>Route420</h2>
+        <h4><a href="/signin">Sign-In</a></h4>
+        <h4><a href="/locations">All Locations</a></h4>
         <h4><a id="user-profile-link" href="/user">User Profile</a></h4>
         <div><button id="btn-signout">Sign-Out</button></div>
 
-
         <form id="searchForm" class="clearfix mb-4" method="get">
-          <!-- <form id="searchForm" class="clearfix mb-4" action="/products" method="get"> -->
           <div class="form-group">
             <label for="example-text">Search For Product</label>
             <input type="text" id="product-search" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
           </div>
-          <!-- <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div> -->
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button id="submit" class="btn btn-primary">Submit</button>
         </form>
-
-        <!-- <h3>Locations:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each locations}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.city}}, {{this.state}}</a>
-              
-                {{#each this.Stores}}
-                <div> 
-                  <strong>{{name}}</strong><br>
-                  Description: {{description}}<br>
-                  Address Line 1: {{adrln1}}<br>
-                  Address Line 2: {{addrln2}}<br>
-                  Zip: {{zip}}
-                </div>
-                {{/each}}
-              
-           <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul> -->
 
       </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>

@@ -29,6 +29,22 @@ module.exports = function(sequelize, DataTypes)
         type: DataTypes.STRING,
         allowNull: true
       },
+      city:
+      {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            len: [3]
+          }
+      },
+      state:
+      {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [2]
+        }
+      },
       zip:
       {
         type: DataTypes.INTEGER,

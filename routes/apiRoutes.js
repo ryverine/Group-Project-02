@@ -16,7 +16,6 @@ module.exports = function(app) {
     }).then(function(dbProducts) 
     {
       res.render("products", {searchResults: dbProducts});
-      //res.json(dbProducts);
     }).catch(function(error){
       console.log("------------------------------");
       console.log(error);
@@ -59,37 +58,22 @@ module.exports = function(app) {
     });
   });
 
-  // Delete a comment
   app.delete("*/api/store_comment/:id", function(req, res) 
   {
     db.Store_Comment.destroy({ 
       where: { id: req.params.id } 
     }).then(function(dbCommentsRemoved) {
-  
-      //console.log("dbExample", dbCommentsRemoved);
+
       res.json(dbCommentsRemoved);
       
     });
   });
 
-  // edit store comment
-  // https://medium.com/@sarahdherr/sequelizes-update-method-example-included-39dfed6821d
   app.put("*/api/store_comment/:id", function(req, res) 
   {
-    console.log("------------------------------");
-    console.log("comment id: ", req.body.id);
-    console.log("comment: ", req.body.comment);
-    console.log("createdAt", req.body.createdAt);
-    console.log("updated at: ", req.body.updatedAt);
-    console.log("StoreID", req.body.StoreID);
-    console.log("UserID", req.body.UserID);
-    console.log("------------------------------");
 
-    // needs to be object
     db.Store_Comment.update({
-        comment: req.body.comment,
-        //createdAt: req.body.createdAt,
-        updateAt: req.body.updateAt
+        comment: req.body.comment
       },
       {
         where: {
@@ -104,54 +88,5 @@ module.exports = function(app) {
       });
 
   });
-
-
-
-  /*
-
-  // PUT route for updating todos. We can get the updated todo data from req.body
-  app.put("/api/todos", function(req, res) {
-    // Update takes in an object describing the properties we want to update, and
-    // we use where to describe which objects we want to update
-    db.Todo.update({
-      text: req.body.text,
-      complete: req.body.complete
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then(function(dbTodo) {
-      res.json(dbTodo);
-    });
-  });
-
-
-  */
-
-
-
-
-
-
-  // Get all examples
-  /*app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });*/
-
-  // Create a new example
-  /*app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });*/
-
-  // Delete an example by id
-  /*app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });*/
 
 };

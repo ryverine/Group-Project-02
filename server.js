@@ -21,7 +21,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
@@ -37,11 +36,13 @@ if (process.env.NODE_ENV === "test") {
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
-   /* console.log(
+    console.log("------------------------------------");
+    console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
       PORT
-    );*/
+    );
+    console.log("------------------------------------");
   });
 });
 

@@ -53,44 +53,24 @@ https://stackoverflow.com/questions/34407193/using-sequelize-with-associations-a
 
 ===========================================
 
-2303	
-DEVELOPMENT PROJECTS COORD	
-34	
-11	
-$43,103.00	
-$49,566.50	
-$56,030.00	
-$62,493.50	
-$68,957.00
 
 
 
 ===========================================
 
 
+
+
+
 ===========================================
 
-Geolocation: Displaying User or Device Position on Maps
-https://developers.google.com/maps/documentation/javascript/geolocation
-
-https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
-
-https://www.w3schools.com/html/html5_geolocation.asp
 
 
 
-GeoBytes Get Nearby Cities API
-https://www.programmableweb.com/api/geobytes-get-nearby-cities
-
-http://geobytes.com/get-nearby-cities-api/
-
-GeoBytes IP Address Locator
-http://geobytes.com/iplocator/
 ===========================================
 
-Google
-Use this key in your application by passing it with the key=API_KEY parameter.
-AIzaSyA-bwRMjIrXkqY7Gc2knYsYuch7usU3Tyk
+
+
 
 
 ===========================================

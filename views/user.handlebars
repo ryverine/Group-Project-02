@@ -9,7 +9,7 @@
 
         <div>
         {{#if user}}
-            <h1>Welcome back, {{user.first_name}}!</h1>
+            <h1>Welcome back, {{user.first_name}}! {{user.id}}</h1>
             <h3>Your Info</h3>
             <div id="user-profile-section" data-user="{{user.id}}"> 
                 Name: {{user.first_name}} {{user.last_name}} <br>
@@ -18,20 +18,19 @@
             <div>
                 <h3>Comments You Have Made:</h3>
                 {{#each user.Store_Comments}}
-                <div> 
+                <div class="store-user-comment"> 
                     
                     <strong>Store: </strong><a href="/store/{{Store.id}}">{{Store.name}}</a><br>
                     <strong>Posted: </strong>{{updatedAt}}<br>
-                    <strong>Comment: </strong><br>
-                    
+                    <h5 data-user-id="{{UserId}}">You said: </h5>
                     <form>
                         <textarea class="user-comment-textarea" readonly>{{comment}}</textarea><br>
 
-                        <button class="user-edit-comment" data-comment="{{id}}" data-store="{{Store.id}}">Edit</button>
+                        <button class="user-edit-comment" data-user="{{user.id}}" data-comment="{{id}}" data-store="{{Store.id}}" style="display:none;">Edit</button>
 
-                        <button class="user-save-comment" data-comment="{{id}}" data-store="{{Store.id}}" style="display:none;">Save/Cancel</button>
+                        <button class="user-save-comment" data-user="{{user.id}}" data-comment="{{id}}" data-store="{{Store.id}}" style="display:none;">Save/Cancel</button>
 
-                        <button class="user-delete-comment" data-comment="{{id}}" data-store="{{Store.id}}">Delete</button>
+                        <button class="user-delete-comment" data-user="{{user.id}}" data-comment="{{id}}" data-store="{{Store.id}}" style="display:none;">Delete</button>
                     </form>
                     <hr>
                 </div>
@@ -48,6 +47,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>

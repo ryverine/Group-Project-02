@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+krypton-master
 npm-debug.log
 .env
 package-lock.json

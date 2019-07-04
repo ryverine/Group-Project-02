@@ -10,13 +10,13 @@
         <div>
             <h1 id="store-name" data-store-id={{store.id}}>{{store.name}}</h1>
             <div> 
-                Address Line 1: {{store.addrln1}}<br>
-                Address Line 2: {{store.addrln2}}<br>
-                Zip: {{store.zip}}
-            </div>
-            <div>
-                 <h3>Description:</h3>
-                 {{store.description}}<br>
+                {{store.addrln1}} <br>
+                {{#if store.addrln2}}
+                  {{store.addrln2}} <br>
+                {{/if}}
+                {{store.city}}, {{store.state}} {{store.zip}}
+         
+                <p>{{store.description}}</p>
             </div>
 
             <div>
@@ -25,45 +25,39 @@
                 <div> 
                 <strong><a href="/product/{{id}}">{{name}}</a></strong>
                 <p>
-                    <strong>Description: </strong>{{description}}<br>
-                    <strong>Brand: </strong>{{brand}}<br>
-                    <strong>Quantity: </strong>{{quantity}}<br>
-                    <strong>Price: </strong>${{price}}
+                  <strong>{{brand}}</strong><br>
+                  {{description}}<br>
                 </p>
                 </div>
                 {{/each}}
             </div>
 
             <div>
-
-              <h3>User Comments</h3>
-
+              <h3>Community Discussion</h3>
                 <div>
-                  <!-- SECTION TO ADD COMMENT -->
                     <form id="commentForm" class="clearfix mb-4" method="post">
                       <div class="form-group">
-                        <label for="example-text">Add  Comment</label>
-                        <textarea id="user-added-comment" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text"></textarea>
+                        <h5>Tell us what's on your mind!</h5>
+                        <textarea id="user-added-comment"></textarea>
                       </div>
-                    <button id="new-comment-submit" class="btn btn-primary float-right">Submit</button>
+                    <button id="new-comment-submit" class="btn btn-primary">Add  Comment</button>
                   </form>
                 </div>
-
                 <div id="user-comment-list">
                 {{#each store.Store_Comments}}
                   <div class="store-user-comment" data-comment-id="{{id}}">
                     <h5 data-user-id="{{User.id}}">{{User.first_name}} says:</h5>
                     <form>
-                    {{comment}}<br>
-                    <strong>Posted:</strong> {{updatedAt}}<br>
-                    <button class="store-edit-comment" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Edit</button>
-                    <button class="store-delete-comment" data-user-id="{{User.id}}" data-comment-id="{{id}}" style="display:none;">Delete</button>
+                      <textarea class="user-comment-textarea" readonly>{{comment}}</textarea><br>
+                      <strong>Posted:</strong> {{updatedAt}}<br>
+                      <button class="user-edit-comment" data-user="{{User.id}}" data-comment="{{id}}" data-store="{{store.id}}" style="display:none;">Edit</button>
+                      <button class="user-save-comment" data-user="{{User.id}}" data-comment="{{id}}" data-store="{{store.id}}" style="display:none;">Save/Cancel</button>
+                      <button class="user-delete-comment" data-user="{{User.id}}" data-comment="{{id}}" data-store="{{store.id}}" style="display:none;">Delete</button>
                     </form>
                     <hr>
                   </div>
                 {{/each}}
               </div>
-
             </div>
         </div>
       </div>
@@ -71,5 +65,4 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+

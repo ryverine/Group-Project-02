@@ -1,3 +1,14 @@
+div{
+  padding: 2px;
+}
+
+textarea{
+  width: 80%;
+}
+
 .list-group-item {
   line-height: 2.5;
 }
+
+
+

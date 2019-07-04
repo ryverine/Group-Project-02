@@ -10,42 +10,18 @@
         <div>
             <h1 id="prodName" data-prod="{{product.id}}">{{product.name}}</h1>
             <div> 
-                Brand: {{product.brand}}<br>
-                Quantity: {{product.quantity}}<br>
-                Price: {{product.price}}<br>
+                Brand: {{product.brand}}
+                <p>{{product.description}}</p>
             </div>
             <div>
-                 <h3>Description:</h3>
-                {{product.description}}
-            </div>
-            <div>
-                <button class="btn-find">Find In Stores</button><br>
+                <button class="btn-find">Find In Stores</button>
+                <p>
                 <h4>Results: </h4>
                 <div id="find-results"></div>
-            </div>
-           <!-- <div>
-                <h3>Stores</h3>
-                {{#each store.Products}}
-                <div> 
-                <strong><a href="/product/{{id}}">{{name}}</a></strong>
-                <p>
-                    <strong>Name: </strong>{{name}}<br>
-                    <strong>Description: </strong>{{description}}<br>
-                    <strong>Brand: </strong>{{brand}}<br>
-                    <strong>Quantity: </strong>{{quantity}}<br>
-                    <strong>Price: </strong>${{price}}
                 </p>
-                </div>
-                <div>
-
-                </div>
-                {{/each}}
-            </div>-->
+            </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>

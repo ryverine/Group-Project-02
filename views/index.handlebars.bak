@@ -1,0 +1,727 @@
+  <link rel="stylesheet" href="/public/styles/bulma.css">
+  <link rel="stylesheet" href="/public/styles/core.css">
+  
+  <div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+
+        <h1>{{msg}}</h1>
+        <h2>This is our Home Page!</h2>
+        <h3><a href="/signin">Sign-In</a></h3>
+        <h3><a href="/locations">All Locations</a></h3>
+        <h4><a id="user-profile-link" href="/user">User Profile</a></h4>
+        <div><button id="btn-signout">Sign-Out</button></div>
+
+
+        <form id="searchForm" class="clearfix mb-4" method="get">
+          <!-- <form id="searchForm" class="clearfix mb-4" action="/products" method="get"> -->
+          <div class="form-group">
+            <label for="example-text">Search For Product</label>
+            <input type="text" id="product-search" class="form-control" aria-describedby="example-text"
+              placeholder="Enter Example Text">
+          </div>
+          <!-- <div class="form-group">
+            <label for="example-description">Example Description</label>
+            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+          </div> -->
+          <button id="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+
+        <!-- <h3>Locations:</h3>
+        <ul id="example-list" class="list-group">
+          {{#each locations}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="example/{{this.id}}">{{this.city}}, {{this.state}}</a>
+              
+                {{#each this.Stores}}
+                <div> 
+                  <strong>{{name}}</strong><br>
+                  Description: {{description}}<br>
+                  Address Line 1: {{adrln1}}<br>
+                  Address Line 2: {{addrln2}}<br>
+                  Zip: {{zip}}
+                </div>
+                {{/each}}
+              
+           <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul> -->
+
+      </div>
+    </div>
+  </div>
+  <!-- Pageloader -->
+<div class="pageloader is-theme"></div>
+<div class="infraloader is-active"></div>
+<div class="dark-wrapper">
+  <!-- Landing page Hero -->
+  <section class="hero is-fullheight is-transparent">
+    <div class="hero-head">
+      <!-- Cloned navbar -->
+      <!-- Cloned navbar that comes in on scroll -->
+      <nav id="navbar-clone" class="navbar is-fixed is-dark">
+        <div class="container">
+          <!-- Brand -->
+          <div class="navbar-brand">
+            <a href="index.html" class="navbar-item">
+              <img class="" src="assets/images/logo/route420-icon.svg" alt="">
+              <span class="brand-name">Route420</span>
+            </a>
+            <!-- Responsive toggle -->
+            <span class="navbar-burger burger" data-target="cloneNavbarMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <!-- Menu -->
+          <div id="cloneNavbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="index.html">Home</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="products.html">Products</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="roadmap.html">Roadmap</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="blog.html">Media</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="contact.html">
+                  <img class="telegram" src="assets/images/logo/telegram.svg" alt="Email icon">
+                  Contact Us
+                </a>
+              </div>
+
+              <!-- Sign in -->
+              <div class="navbar-item is-nav-link">
+                <a href="login.html" class="button k-button k-primary raised has-gradient rounded">
+                  <span class="text">Log In / Sign Up</span>
+                  <span class="front-gradient"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- /Cloned navbar -->
+      <!-- Static navbar -->
+      <nav class="navbar is-light">
+        <div class="container">
+          <!-- Brand -->
+          <div class="navbar-brand">
+            <a href="index.html" class="navbar-item">
+              <img class="" src="assets/images/logo/route420-icon.svg" alt="Route420-app-logo-svg">
+              <span class="brand-name">Route420</span>
+            </a>
+            <!-- Responsive toggle -->
+            <span class="navbar-burger burger" data-target="navbarMenu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <!-- Menu -->
+          <div id="navbarMenu" class="navbar-menu light-menu">
+            <div class="navbar-end">
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="index.html">Home</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="products.html">Products</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="roadmap.html">Roadmap</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="blog.html">Media</a>
+              </div>
+              <!-- Menu item -->
+              <div class="navbar-item is-nav-link">
+                <a class="is-centered-responsive" href="contact.html">
+                  <img class="telegram" src="assets/images/logo/telegram.svg" alt="">
+                  Contact Us
+                </a>
+              </div>
+              <!-- Sign in -->
+              <div class="navbar-item">
+                <a href="login.html" class="button k-button k-primary raised has-gradient rounded">
+                  <span class="text">Log In / Sign Up</span>
+                  <span class="front-gradient"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- /Static navbar -->
+    </div>
+
+    <!-- Hero Image and Title -->
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+
+          <!-- Landing page Title -->
+          <div class="column is-5 landing-caption">
+            <h1 class="title is-1 is-light is-semibold is-spaced main-title">Never be without <br /> CBD
+              ever again.
+
+            </h1>
+            <h2 class="subtitle is-4 is-light is-thin">
+              Find what you want and where it's sold.
+            </h2>
+
+            <!-- Search bar -->
+            <form id="searchForm" action="products.html" method="get">
+
+              <div class="field is-grouped">
+
+                <p class="control is-expanded">
+                  <input class="input" id="product-search" type="text" placeholder="Type a product name">
+                </p>
+                <button class="button k-button k-primary has-gradient is-info" id="submit" type="submit">Search</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Hero image -->
+          <div class="column is-5 is-offset-1">
+            <figure class="image">
+              <img src="assets/images/logo/route420-icon.svg" alt="route420-CBD-Stores-logo">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- /Hero -->
+
+  <!-- Icon Features section -->
+  <section id="start" class="section is-transparent is-relative">
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Content wrapper -->
+      <div class="content-wrapper is-medium">
+        <div class="columns is-vcentered">
+          <!-- Feature -->
+          <div class="column is-4">
+            <div class="feature">
+              <img src="assets/images/icons/city-search.svg" alt="CBD supply store listings icon" data-aos="fade-up"
+                data-aos-delay="100" data-aos-offset="200" data-aos-easing="ease-out-quart">
+              <h4 class="title is-6 is-tight is-light">City Search</h4>
+              <p>View the locations and contact info to each CBD supplier in your area.</p>
+            </div>
+          </div>
+          <!-- Feature -->
+          <div class="column is-4">
+            <div class="feature">
+              <img src="assets/images/icons/product-search.svg" alt="CBD product listings icon" data-aos="fade-up"
+                data-aos-delay="300" data-aos-offset="200" data-aos-easing="ease-out-quart">
+              <h4 class="title is-6 is-tight is-light">Product Search</h4>
+              <p>Search for CBD products and see which stores carry that product.</p>
+            </div>
+          </div>
+          <!-- Feature -->
+          <div class="column is-4">
+            <div class="feature">
+              <img src="assets/images/icons/store-rating.svg" alt="CBD store rating icon" data-aos="fade-up"
+                data-aos-delay="500" data-aos-offset="200" data-aos-easing="ease-out-quart">
+              <h4 class="title is-6 is-tight is-light">Store Rating</h4>
+              <p>Rate a store to let other people know about your experience.</p>
+            </div>
+          </div>
+
+        </div><!-- /Columns -->
+      </div><!-- /Content wrapper -->
+    </div><!-- /Container -->
+  </section><!-- /Icon Features section -->
+
+  <!-- ICO section -->
+  <section class="section is-medium is-end">
+    <!-- Container -->
+    <div class="container">
+      <!-- Divider -->
+      <div class="divider is-centered"></div>
+      <!-- Title & subtitle -->
+      <h2 class="title is-light is-semibold has-text-centered is-spaced">Route420 Features At-A-Glance</h2>
+      <h4 class="subtitle is-6 is-light has-text-centered is-compact">We designed Route420 with a clean and
+        simple interface to meet the needs of people on-the-go and looking for CBD supplies.</h4>
+
+      <!-- Content wrapper -->
+      <div class="content-wrapper is-large">
+
+        <!-- Flying tabs wrapper -->
+        <div class="flying-wrapper">
+          <!-- Tabs container -->
+          <div class="flying-tabs-container">
+            <!-- Tabs -->
+            <div class="flying-tabs">
+              <div class="flying-child tab-1 is-active" data-tab="tab-1"><a href="javascript:void(0);">CREATE</a></div>
+              <div class="flying-child tab-2" data-tab="tab-2"><a href="javascript:void(0);">SEARCH</a>
+              </div>
+              <div class="flying-child tab-3" data-tab="tab-3"><a href="javascript:void(0);">VIEW</a>
+              </div>
+              <div class="flying-child tab-4" data-tab="tab-4"><a href="javascript:void(0);">SHARE</a>
+              </div>
+              <div class="slider"></div>
+            </div>
+          </div>
+
+          <!-- Tabs content wrapper -->
+          <div class="flying-tabs-content">
+            <!-- Tab 1 -->
+            <div id="tab-1" class="tab-content is-active">
+              <div class="columns is-vcentered tab-content-wrapper">
+                <!-- ICO Terms -->
+                <div class="column is-5 is-offset-1">
+                  <div class="text-content">
+                    <h4 class="title is-6 is-light animated preFadeInUp fadeInUp">ACCOUNTS ON
+                      ROUTE420 ARE FREE!
+                    </h4>
+                    <ul class="custom-bullet-list">
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Free</span>
+                        <br>
+                        <span class="item-content">No hidden charges or credit cards
+                          required!</span>
+                      </li>
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Easy</span>
+                        <br>
+                        <span class="item-content">Simple and intuitive user interface
+                          design.</span>
+                      </li>
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Fast</span>
+                        <br>
+                        <span class="item-content">Creating your account takes mere
+                          seconds.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- ICO COuntdown -->
+                <div class="column is-5">
+                  <!-- Card -->
+                  <div class="ico-card animated preFadeInUp fadeInUp">
+                    <!-- Countdown -->
+                    <div class="text-content">
+                      <h4 class="title is-4 is-light animated preFadeInUp fadeInUp">This is
+                        only the beginning to the journey down Route420.
+                      </h4>
+                      <h4 class="title is-6 is-light animated preFadeInUp fadeInUp">
+                        Create your account and become a contributing member of the 420
+                        community.
+                      </h4>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="progress-block">
+                      <!-- Tags -->
+                      <div class="progress-tags">
+                        <div>Product Launch</div>
+                        <div>Dispensory Expansion</div>
+                        <div>Store Admins</div>
+                      </div>
+                      <progress class="progress ico-progress" value="40" max="100">40%</progress>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="button-block">
+                      <a href="#" class="button k-button k-secondary raised has-gradient is-bold is-fullwidth rounded">
+                        <span class="text">Create Your Free Account</span>
+                        <span class="front-gradient"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Tab 1 -->
+
+            <!-- Tab 2 -->
+            <div id="tab-2" class="tab-content">
+              <div class="columns is-vcentered tab-content-wrapper">
+                <!-- Tab content -->
+                <div class="column is-5 is-offset-1">
+                  <div class="text-content">
+                    <h4 class="title is-6 is-light animated preFadeInUp fadeInUp">SEARCH FOR
+                      PRODUCTS TO SEE WHICH STORES SUPPLY IT.
+                    </h4>
+                    <ul class="custom-bullet-list">
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Product Supplier Location Results</span>
+                        <br>
+                        <span class="item-content">View only the stores who carry the
+                          product you're looking for.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Tab image -->
+                <div class="column is-5">
+                  <img class="animated preFadeInUp fadeInUp" src="assets/images/illustrations/searches.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <!-- /Tab 2 -->
+
+            <!-- Tab 3 -->
+            <div id="tab-3" class="tab-content">
+              <div class="columns is-vcentered tab-content-wrapper">
+                <!-- Tab content -->
+                <div class="column is-5 is-offset-1">
+                  <div class="text-content">
+                    <h4 class="title is-6 is-light animated preFadeInUp fadeInUp">VIEW LISTINGS
+                      OF CBD SUPPLIER LOCATIONS IN YOUR AREA</h4>
+                    <ul class="custom-bullet-list">
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Store Listings</span>
+                        <br>
+                        <span class="item-content">View stores that supply a specific
+                          product or a list of all the stores in your area.</span>
+                      </li>
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Product Prices</span>
+                        <br>
+                        <span class="item-content">View product prices from each store to
+                          get the best deal.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Tab image -->
+                <div class="column is-5">
+                  <img class="animated preFadeInUp fadeInUp" src="assets/images/illustrations/charts.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <!-- /Tab 3 -->
+
+            <!-- Tab 4 -->
+            <div id="tab-4" class="tab-content">
+              <div class="columns is-vcentered tab-content-wrapper">
+                <!-- Tab content -->
+                <div class="column is-5 is-offset-1">
+                  <div class="text-content">
+                    <h4 class="title is-6 is-light animated preFadeInUp fadeInUp">SHARE YOUR
+                      EXPERIENCES WITH THE COMMUNITY</h4>
+                    <ul class="custom-bullet-list">
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Educate The Community</span>
+                        <br>
+                        <span class="item-content">Your experiences matter and can be shared
+                          on our app.</span>
+                      </li>
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>Store Ratings</span>
+                        <br>
+                        <span class="item-content">Share your customer experience so others
+                          in the community.</span>
+                      </li>
+                      <li class="animated preFadeInUp fadeInUp">
+                        <span>View Experiences</span>
+                        <br>
+                        <span class="item-content">You'll see store ratings from other
+                          people using the app too.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Tab image -->
+                <div class="column is-5">
+                  <img class="animated preFadeInUp fadeInUp" src="assets/images/illustrations/bounty.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <!-- /Tab 4 -->
+          </div>
+        </div>
+
+      </div>
+      <!-- Content wrapper -->
+    </div>
+    <!-- /Container -->
+  </section>
+  <!-- /ICO section -->
+
+  <!-- Company section -->
+  <section class="section is-medium has-big-dark-gradient">
+    <!-- Container -->
+    <div class="container">
+      <!-- Divider -->
+      <div class="divider is-centered"></div>
+      <!-- Title & subtitle -->
+      <h2 class="title is-light is-semibold has-text-centered is-spaced">Route420 Team</h2>
+      <h4 class="subtitle is-6 is-light has-text-centered is-compact">We are web developers who explored,
+        discovered, and validated our findings. We saw an opportunity to design a solution that made it
+        easier for people to find local suppliers of CBD products. </h4>
+
+      <!-- Content wrapper -->
+      <div class="content-wrapper is-large">
+        <div class="columns is-vcentered">
+
+          <div class="column is-hidden-mobile"></div>
+
+          <!-- Team member -->
+          <div class="column is-3">
+            <div class="team-member-container">
+              <div class="dark-card">
+                <div class="avatar">
+                  <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle class="circle-chart-background" stroke-width="1" fill="none" cx="16.91549431"
+                      cy="16.91549431" r="15.91549431" />
+                    <circle class="circle-chart-circle" stroke-width="1" stroke-dasharray="33,100"
+                      stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                  </svg>
+                  <img class="is-sketch" src="assets/images/team/isabella.svg" alt="">
+                  <img class="is-real" src="assets/images/team/isabella.jpg" alt="">
+                </div>
+                <div class="member-info">
+                  <h4 class="title is-light is-6 is-tight">Isabella Merendino</h4>
+                  <div class="position">Founder / Product Designer</div>
+                  <p class="description">Isabella is a product visionary with years of
+                    professional experience in the hemp industry.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team member -->
+          <div class="column is-3">
+            <div class="team-member-container">
+              <!-- Card -->
+              <div class="dark-card">
+                <!-- Avatar wrapper -->
+                <div class="avatar">
+                  <!-- Svg circle -->
+                  <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- Track -->
+                    <circle class="circle-chart-background" stroke-width="1" fill="none" cx="16.91549431"
+                      cy="16.91549431" r="15.91549431" />
+                    <!-- Stroke -->
+                    <circle class="circle-chart-circle" stroke-width="1" stroke-dasharray="33,100"
+                      stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                  </svg>
+                  <!-- Sketeched face -->
+                  <img class="is-sketch" src="assets/images/team/matthew.svg" alt="">
+                  <!-- Real face -->
+                  <img class="is-real" src="assets/images/team/matthew.jpg" alt="">
+                </div>
+                <!-- Member meta -->
+                <div class="member-info">
+                  <h4 class="title is-light is-6 is-tight">Matthew Allen</h4>
+                  <div class="position">Co-Founder / Front-end Developer</div>
+                  <p class="description">Matthew is a front-end secret agent with an interest in
+                    new frameworks and cool CSS shit.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team member -->
+          <div class="column is-3">
+            <div class="team-member-container">
+              <div class="dark-card">
+                <div class="avatar">
+                  <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle class="circle-chart-background" stroke-width="1" fill="none" cx="16.91549431"
+                      cy="16.91549431" r="15.91549431" />
+                    <circle class="circle-chart-circle" stroke-width="1" stroke-dasharray="33,100"
+                      stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                  </svg>
+                  <img class="is-sketch" src="assets/images/team/ryan.svg" alt="">
+                  <img class="is-real" src="assets/images/team/ryan.jpg" alt="">
+                </div>
+                <div class="member-info">
+                  <h4 class="title is-light is-6 is-tight">Ryan Cheek</h4>
+                  <div class="position">Co-Founder / Backend Engineer</div>
+                  <p class="description">Ryan loves the backend and kicks ass at database design
+                    which is why we love him.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-hidden-mobile"></div>
+        </div>
+
+        <div class="columns is-vcentered">
+
+          <div class="column is-hidden-mobile"></div>
+
+          <!-- Team member -->
+          <div class="column is-3">
+            <div class="team-member-container">
+              <div class="dark-card">
+                <div class="avatar">
+                  <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle class="circle-chart-background" stroke-width="1" fill="none" cx="16.91549431"
+                      cy="16.91549431" r="15.91549431" />
+                    <circle class="circle-chart-circle" stroke-width="1" stroke-dasharray="33,100"
+                      stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                  </svg>
+                  <img class="is-sketch" src="assets/images/team/jared.svg" alt="">
+                  <img class="is-real" src="assets/images/team/Jared.jpg" alt="">
+                </div>
+                <div class="member-info">
+                  <h4 class="title is-light is-6 is-tight">Jared Williams</h4>
+                  <div class="position">Co-Founder / UX & front-End Magic</div>
+                  <p class="description">Jared lives in a world of zen when experiences are
+                    intuitive and CSS makes everything beautiful.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team member -->
+          <div class="column is-3">
+            <div class="team-member-container">
+              <div class="dark-card">
+                <div class="avatar">
+                  <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle class="circle-chart-background" stroke-width="1" fill="none" cx="16.91549431"
+                      cy="16.91549431" r="15.91549431" />
+                    <circle class="circle-chart-circle" stroke-width="1" stroke-dasharray="33,100"
+                      stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                  </svg>
+                  <img class="is-sketch" src="assets/images/team/mike.svg" alt="">
+                  <img class="is-real" src="assets/images/team/mike.jpg" alt="">
+                </div>
+                <div class="member-info">
+                  <h4 class="title is-light is-6 is-tight">OPEN POSITION</h4>
+                  <div class="position">Growth Hacker</div>
+                  <p class="description">We have a spot on the roster for an experienced growth
+                    hacker. Contact us today.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team member -->
+          <div class="column is-3">
+            <div class="team-member-container">
+              <div class="dark-card">
+                <div class="avatar">
+                  <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <circle class="circle-chart-background" stroke-width="1" fill="none" cx="16.91549431"
+                      cy="16.91549431" r="15.91549431" />
+                    <circle class="circle-chart-circle" stroke-width="1" stroke-dasharray="33,100"
+                      stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                  </svg>
+                  <img class="is-sketch" src="assets/images/team/sandra.svg" alt="">
+                  <img class="is-real" src="assets/images/team/sandra.jpg" alt="">
+                </div>
+                <div class="member-info">
+                  <h4 class="title is-light is-6 is-tight">OPEN POSITION</h4>
+                  <div class="position">Business Development</div>
+                  <p class="description">If you have cannabis industry contacts we'd love to hear
+                    from you. Contact us today.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-hidden-mobile"></div>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- /Content wrapper -->
+  </section>
+
+</div>
+<!-- /Content wrapper -->
+
+<!-- Contact section -->
+<section class="section is-medium is-darkest">
+  <!-- Container -->
+  <div class="container">
+    <!-- Divider -->
+    <div class="divider is-centered"></div>
+    <!-- Title & subtitle -->
+    <h2 class="title is-light is-semibold has-text-centered is-spaced">Get in Touch</h2>
+    <h4 class="subtitle is-6 is-light has-text-centered is-compact">Your feedback is important to us.</h4>
+
+    <!-- Content wrapper -->
+    <div class="content-wrapper is-large">
+      <div class="columns">
+        <div class="column is-8 is-offset-2">
+          <!-- Contact icons -->
+          <div class="contact-icons">
+            <!-- Telegram -->
+            <a class="contact-icon" data-aos="fade-up" data-aos-delay="500" data-aos-offset="200"
+              data-aos-easing="ease-out-quart">
+              <img class="is-telegram" src="assets/images/logo/telegram.svg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-6 is-offset-3">
+          <!-- Form -->
+          <form class="contact-form">
+            <!-- Field -->
+            <div class="control-material is-secondary">
+              <input class="material-input " type="text" required>
+              <span class="material-highlight"></span>
+              <span class="bar"></span>
+              <label>Name</label>
+            </div>
+            <!-- Field -->
+            <div class="control-material is-secondary">
+              <input class="material-input " type="email" required>
+              <span class="material-highlight"></span>
+              <span class="bar"></span>
+              <label>Email</label>
+            </div>
+            <!-- Field -->
+            <div class="control-material is-secondary">
+              <textarea rows="3"></textarea>
+              <span class="material-highlight"></span>
+              <span class="bar"></span>
+              <label>Message </label>
+            </div>
+
+            <!-- Submit -->
+            <div class="has-text-centered">
+              <button class="button is-button k-button k-primary raised has-gradient is-fat is-bold is-submit">
+                <span class="text">Send message</span>
+                <span class="front-gradient"></span>
+              </button>
+            </div>
+          </form><!-- /Form -->
+        </div>
+      </div><!-- /Columns -->
+    </div><!-- Content wrapper -->
+  </div><!-- Container -->
+</section><!-- Contact section -->
+</div><!-- /Home -->
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
