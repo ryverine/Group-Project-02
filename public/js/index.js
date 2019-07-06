@@ -188,6 +188,7 @@ $(document).ready(function()
           API.addStoreComment(commentObj).then(function(data)
           {
             location.reload();
+            
           });
         }
       }
