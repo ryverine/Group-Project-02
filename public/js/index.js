@@ -172,20 +172,24 @@ $(document).ready(function()
       {
         var store = $("#store-name").attr("data-store-id");
         var newComment = $("#user-added-comment").val().trim();
-        var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
-      
-        var commentObj = {
-          comment: newComment,
-          createdAt: currTime,
-          updatedAt: currTime,
-          StoreId: store,
-          UserId: user
-        };
-      
-        API.addStoreComment(commentObj).then(function(data)
+
+        if(newComment != "")
         {
-          location.reload();
-        });
+          var currTime = moment().format("YYYY-MM-DD HH:mm:ss");
+        
+          var commentObj = {
+            comment: newComment,
+            createdAt: currTime,
+            updatedAt: currTime,
+            StoreId: store,
+            UserId: user
+          };
+        
+          API.addStoreComment(commentObj).then(function(data)
+          {
+            location.reload();
+          });
+        }
       }
     }
   });
