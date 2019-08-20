@@ -1,5 +1,6 @@
 # Location-Reddit-Clone
 
+TESTING THE PENCIL ICON
 
 ## Running Application from Node Command Line
 
